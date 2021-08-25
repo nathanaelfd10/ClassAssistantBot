@@ -18,34 +18,169 @@ class ClassAssistantBot(object):
     def __init__(self):
         self.jadwal_mobile = """{"jadwal_mobile" : [
         {
+            "kode_matkul": "MA5004",
+            "classroom": "AR306",
+            "name": "Fundamentals of Data Analysis - Theory",
+            "lecturer": "Novi Patricia S.Kom., M.Sc.",
+            "day": "Thursday",
+            "hour_begin": "13:00",
+            "hour_end": "15:30",
+            "student_count": 34, 
+            "tap_in_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8394/attendance",
+            "tap_out_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8394/attendance",
+            "learning_resource": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8394/teaching-learning-materials",
+            "assignment": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8394/assignments",
+            "unit_credit": 3 
+        },
+{
+            "kode_matkul": "MA5004",
+            "classroom": "AR306",
+            "name": "Fundamentals of Data Analysis - Practicum",
+            "lecturer": "Novi Patricia S.Kom., M.Sc.",
+            "day": "Thursday",
+            "hour_begin": "16:00",
+            "hour_end": "17:40",
+            "student_count": 34, 
+            "tap_in_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8395/attendance",
+            "tap_out_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8395/attendance",
+            "learning_resource": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8395/teaching-learning-materials",
+            "assignment": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8395/assignments",
+            "unit_credit": 1 
+        },
+        {
             "kode_matkul": "TI2104",
             "classroom": "AR407",
-            "nama": "Computer Graphics",
-            "dosen": "Yulia Ery Kurniawati",
-            "day": "Monday",
+            "name": "Computer Graphics - Theory",
+            "lecturer": "Yulia Ery Kurniawati S.Kom., M.Eng.",
+            "day": "Tuesday",
             "hour_begin": "11:00",
             "hour_end": "13:30",
-            "student_count": 36
+            "student_count": 36, 
+            "tap_in_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8396/attendance",
+            "tap_out_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8396/attendance",
+            "learning_resource": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8396/teaching-learning-materials",
+            "assignment": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8396/assignments",
+            "unit_credit": 3
+        },
+        {
+            "kode_matkul": "TI2104",
+            "classroom": "AR407",
+            "name": "Computer Graphics - Practicum",
+            "lecturer": "Yulia Ery Kurniawati S.Kom., M.Eng.",
+            "day": "Tuesday",
+            "hour_begin": "14:00",
+            "hour_end": "15:40",
+            "student_count": 36, 
+            "tap_in_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8397/attendance",
+            "tap_out_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8397/attendance",
+            "learning_resource": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8397/teaching-learning-materials",
+            "assignment": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8397/assignments",
+            "unit_credit": 1
         },
         {
             "kode_matkul": "TI3054",
             "classroom": "AR306",
-            "nama": "Mobile Computing",
-            "dosen": "Alfa",
-            "day": "Sunday",
-            "hour_begin": "15:00",
-            "hour_end": "17:30",
-            "student_count": 21
+            "name": "Mobile Computing - Theory",
+            "lecturer": "Alfa Ryano Yohannis S.T., M.T.",
+            "day": "Monday",
+            "hour_begin": "13:00",
+            "hour_end": "15:30",
+            "student_count": 21, 
+            "tap_in_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8402/attendance",
+            "tap_out_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8402/attendance",
+            "learning_resource": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8402/teaching-learning-materials",
+            "assignment": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8402/assignments",
+            "unit_credit": 3
         },
-             {
+{
             "kode_matkul": "TI3054",
             "classroom": "AR306",
-            "nama": "Research and stuffs",
-            "dosen": "Alfa",
-            "day": "Sunday",
-            "hour_begin": "21:23",
-            "hour_end": "23:30",
-            "student_count": 21
+            "name": "Mobile Computing - Practicum",
+            "lecturer": "Alfa Ryano Yohannis S.T., M.T.",
+            "day": "Monday",
+            "hour_begin": "16:00",
+            "hour_end": "17:40",
+            "student_count": 21, 
+            "tap_in_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8403/attendance",
+            "tap_out_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8403/attendance",
+            "learning_resource": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8403/teaching-learning-materials",
+            "assignment": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8403/assignments",
+            "unit_credit": 1
+        },
+{
+            "kode_matkul": "TI4064",
+            "classroom": "AR308",
+            "name": "Artificial Intelligence - Theory",
+            "lecturer": "Yulius Denny Prabowo S.T., M.T.I.",
+            "day": "Friday",
+            "hour_begin": "13:00",
+            "hour_end": "15:30",
+            "student_count": 31, 
+            "tap_in_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8398/attendance",
+            "tap_out_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8398/attendance",
+            "learning_resource": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8398/teaching-learning-materials",
+            "assignment": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8398/assignments",
+            "unit_credit": 3
+        },
+{
+            "kode_matkul": "TI4064",
+            "classroom": "AR308",
+            "name": "Artificial Intelligence - Practicum",
+            "lecturer": "Yulius Denny Prabowo S.T., M.T.I.",
+            "day": "Friday",
+            "hour_begin": "16:00",
+            "hour_end": "17:40",
+            "student_count": 31, 
+            "tap_in_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8399/attendance",
+            "tap_out_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8399/attendance",
+            "learning_resource": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8399/teaching-learning-materials",
+            "assignment": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8399/assignments",
+            "unit_credit": 1
+        },
+{
+            "kode_matkul": "UM0062",
+            "classroom": "AR301",
+            "name": "Introduction to Mandarin",
+            "lecturer": "Yohanes Putut Wibhisana S.S., M.Kesos.",
+            "day": "Wednesday",
+            "hour_begin": "09:00",
+            "hour_end": "10:40",
+            "student_count": 50, 
+            "tap_in_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8535/attendance",
+            "tap_out_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8535/attendance",
+            "learning_resource": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8535/teaching-learning-materials",
+            "assignment": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8535/assignments",
+            "unit_credit": 2
+        },
+        {
+            "kode_matkul": "UM3033",
+            "classroom": "AR407",
+            "name": "Research Methodology for IT or IS",
+            "lecturer": "Drs. Muhammad Rusli M.M.",
+            "day": "Wednesday",
+            "hour_begin": "11:00",
+            "hour_end": "13:30",
+            "student_count": 89, 
+            "tap_in_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/attendance",
+            "tap_out_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/attendance",
+            "learning_resource": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/teaching-learning-materials",
+            "assignment": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/assignments",
+            "unit_credit": 2
+        },
+                {
+            "kode_matkul": "UM3033",
+            "classroom": "AR407",
+            "name": "MATKUL BOONG BOONGAN",
+            "lecturer": "Drs. Muhammad Rusli M.M.",
+            "day": "Wednesday",
+            "hour_begin": "20:32",
+            "hour_end": "19:33",
+            "student_count": 89, 
+            "tap_in_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/attendance",
+            "tap_out_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/attendance",
+            "learning_resource": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/teaching-learning-materials",
+            "assignment": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/assignments",
+            "unit_credit": 2
         }
         ]
         }"""
@@ -93,12 +228,12 @@ class ClassAssistantBot(object):
         matkul_list = []
         for num, matkul in enumerate(jadwal_json['jadwal_mobile']):
             if str(matkul['day']).lower() == self.today.lower():
-                matkul_list.append("{num}. {kode_matkul} - {nama} - {hour_begin}-{hour_end}".format(
+                matkul_list.append("{num}. {kode_matkul} - {name} - {hour_begin}-{hour_end}".format(
                     num = num+1,
                     day = self.today,
                     kode_matkul = matkul['kode_matkul'], 
-                    nama = matkul['nama'], 
-                    dosen = matkul['dosen'],
+                    name = matkul['name'], 
+                    lecturer = matkul['lecturer'],
                     hour_begin = matkul['hour_begin'], 
                     hour_end = matkul['hour_end']
                     ))

@@ -14,6 +14,7 @@ from datetime import datetime, timedelta, timezone
 import pytz
 import calendar
 from ClassAssistant import ClassAssistantBot
+from keep_alive import keep_alive
 
 load_dotenv('.env')
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
@@ -23,7 +24,7 @@ IFBot = ClassAssistantBot()
 now = datetime.now()
 tz = pytz.timezone('Asia/Jakarta')
 tz_jkt = now.replace(tzinfo=tz)
-CHANNEL_ID = 879663995852849193
+CHANNEL_ID = 809350564718051330
 
 print(tz_jkt)
 
@@ -41,16 +42,29 @@ async def today(ctx):
     c = bot.get_channel(CHANNEL_ID)
     await c.send(matkul_info_message)
 
-async def send_embed(kode_matkul, name, hour_begin, hour_end, title_desc, desc, link):
+async def send_embed(kode_matkul, name, hour_begin, hour_end, title_desc, desc, link, lecturer, learning_resource, assignment):
     try:
         embed=discord.Embed(title="{kode_matkul} {name} | {hour_begin} - {hour_end}. {title_desc}.".format(
-            kode_matkul = kode_matkul,
-            name = name, 
-            hour_begin = hour_begin,
-            hour_end = hour_end,
-            title_desc = title_desc
-        ), url="{link}".format(link = link), description="{desc}".format(name = name, desc = desc), color=0x00ff62)
-        embed.set_author(name="ClassAssistantBot", url="https://github.com/noxfl/ClassAssistantBot/", icon_url="https://avatars.githubusercontent.com/u/64892153?v=4")
+          kode_matkul = kode_matkul,
+          name = name,
+          hour_begin = hour_begin,
+          hour_end = hour_end,
+          title_desc = title_desc
+        ), description="{desc}".format(desc = desc), color=0x3dff54)
+        embed.set_author(name="ClassAssistantBot", url="https://github.com/noxfl", icon_url="https://avatars.githubusercontent.com/u/64892153?v=4")
+        embed.add_field(name="Be sure to login first before clicking any of the link below.", value="[Login](http://leaps.kalbis.ac.id/login)", inline=False)
+        embed.add_field(name="Attendance", value="[Tap In/Tap Out]({tap_in_link})".format(tap_in_link = link), inline=True)
+        embed.add_field(name="TLM", value="[Here]({learning_resource})".format(learning_resource = learning_resource), inline=True)
+        embed.add_field(name="Assignments", value="[Here]({assignment})".format(assignment = assignment), inline=True)
+        embed.set_footer(text="{lecturer}".format(lecturer=lecturer))
+        # embed=discord.Embed(title="{kode_matkul} {name} | {hour_begin} - {hour_end}. {title_desc}.".format(
+        #     kode_matkul = kode_matkul,
+        #     name = name, 
+        #     hour_begin = hour_begin,
+        #     hour_end = hour_end,
+        #     title_desc = title_desc
+        # ), url="{link}".format(link = link), description="{desc}".format(name = name, desc = desc), color=0x00ff62)
+        # embed.set_author(name="ClassAssistantBot", url="https://github.com/noxfl/ClassAssistantBot/", icon_url="https://avatars.githubusercontent.com/u/64892153?v=4")
         c = bot.get_channel(CHANNEL_ID)
         await c.send(embed=embed)
         print('Embed sent: {name}'.format(name=name))
@@ -80,14 +94,15 @@ async def populate_matkul_reminder():
         matkul_set_count += 1
         print('Adding {name} to schedule..'.format(name=matkul['name']))
         matkul_start_reminder_message = "{} is about to start soon.\nMake sure to check attendance in by clicking the link above!\nGet ready for today's class, best of luck!".format(matkul['name'])
+        # matkul_start_reminder_message = "{} is about to start soon.\nMake sure to check attendance in by clicking the link above!\nGet ready for today's class, best of luck!"
         matkul_end_reminder_message = "{} has now ended. Don't forget to check your attendance out!".format(matkul['name'])
         time_before_class = modify_thirty_minutes(matkul['hour_begin'], 'substract').split(":")
         time_after_class = modify_thirty_minutes(matkul['hour_end'], 'add').split(":")
         day = matkul['day'][0:3]
         print("Time before class: {a} + {b}".format(a=time_before_class[0], b=time_before_class[1]))
         print("Time after class: {a} + {b}".format(a=time_after_class[0], b=time_after_class[1]))
-        scheduler.add_job(send_embed, CronTrigger(day_of_week=day.lower(), hour=time_before_class[0], minute=time_before_class[1], timezone=tz), args=[matkul['kode_matkul'], matkul['name'], matkul['hour_begin'], matkul['hour_end'], tap_in_message, matkul_start_reminder_message, matkul['tap_in_link']])
-        scheduler.add_job(send_embed, CronTrigger(day_of_week=day.lower(), hour=time_after_class[0], minute=time_after_class[1], timezone=tz), args=[matkul['kode_matkul'], matkul['name'], matkul['hour_begin'], matkul['hour_end'], tap_out_message, matkul_end_reminder_message, matkul['tap_out_link']])
+        scheduler.add_job(send_embed, CronTrigger(day_of_week=day.lower(), hour=time_before_class[0], minute=time_before_class[1], timezone=tz), args=[matkul['kode_matkul'], matkul['name'], matkul['hour_begin'], matkul['hour_end'], tap_in_message, matkul_start_reminder_message, matkul['tap_in_link'], matkul['lecturer'], matkul['learning_resource'], matkul['assignment']])
+        scheduler.add_job(send_embed, CronTrigger(day_of_week=day.lower(), hour=time_after_class[0], minute=time_after_class[1], timezone=tz), args=[matkul['kode_matkul'], matkul['name'], matkul['hour_begin'], matkul['hour_end'], tap_out_message, matkul_end_reminder_message, matkul['tap_out_link'], matkul['lecturer'], matkul['learning_resource'], matkul['assignment']])
         # scheduler.add_job(send_embed, CronTrigger(day_of_week='mon', second="5, 15, 25, 35, 45, 55"), args=[matkul_end_reminder_message])
         # scheduler.add_job(send_embed, CronTrigger(day_of_week=day.lower(), hour=time_after_class[0], minute=time_after_class[1]), args=[matkul['kode_matkul'], matkul['name'], matkul['hour_begin'], matkul['hour_end'], tap_out_message, matkul_end_reminder_message, 'http://leaps.kalbis.ac.id/'])
         # scheduler.add_job(send_matkul_reminder, CronTrigger(day_of_week='tue', second="0, 10, 20, 30, 40, 50"), args=[matkul_start_reminder_message])
@@ -126,9 +141,9 @@ async def on_ready():
     print('Successfully logged in as {0.user}'.format(bot))
     print("Ready..")
     await populate_matkul_reminder()
-    await send_matkul_reminder('Bot has come online')
+    # await send_matkul_reminder('Bot has come online')
     scheduler.start()
-
+    
 
 @client.event
 async def on_message(message):
@@ -158,6 +173,6 @@ response_words = [
     "Yo!"
 ]
 
-
+keep_alive()
 bot.run(DISCORD_TOKEN)
 

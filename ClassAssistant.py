@@ -10,7 +10,7 @@ import schedule
 import asyncio
 import time
 import threading
-from datetime import date
+from datetime import date, datetime, timezone, timedelta
 import calendar
 
 class ClassAssistantBot(object):
@@ -167,14 +167,29 @@ class ClassAssistantBot(object):
             "assignment": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/assignments",
             "unit_credit": 2
         },
-                {
+        {
+            "kode_matkul": "UMXXXX",
+            "classroom": "ARXXX",
+            "name": "Test_Matkul Theory",
+            "lecturer": "Drs. Muhammad Rusli M.M.",
+            "day": "Thursday",
+            "hour_begin": "20:50",
+            "hour_end": "19:52",
+            "student_count": 89, 
+            "tap_in_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/attendance",
+            "tap_out_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/attendance",
+            "learning_resource": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/teaching-learning-materials",
+            "assignment": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/assignments",
+            "unit_credit": 2
+        },
+          {
             "kode_matkul": "UM3033",
             "classroom": "AR407",
-            "name": "MATKUL BOONG BOONGAN",
+            "name": "Mobile Computing - Practicum",
             "lecturer": "Drs. Muhammad Rusli M.M.",
-            "day": "Wednesday",
-            "hour_begin": "20:32",
-            "hour_end": "19:33",
+            "day": "Saturday",
+            "hour_begin": "01:30",
+            "hour_end": "00:31",
             "student_count": 89, 
             "tap_in_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/attendance",
             "tap_out_link": "http://leaps.kalbis.ac.id/LMS/lectures/detail/8393/attendance",
@@ -185,8 +200,8 @@ class ClassAssistantBot(object):
         ]
         }"""
 
-        my_date = date.today()
-        self.today = calendar.day_name[my_date.weekday()]
+
+      #move code above to a functionmy_date.weekday()]
         self.jadwal_json = json.loads(self.jadwal_mobile)
 
     def job(self):
@@ -224,12 +239,20 @@ class ClassAssistantBot(object):
         return jadwal_json
 
     def get_matkul_schedule(self):
+
+        timezone_offset = +7.0  # Asia/Jakarta (UTC+07:00)
+        tzinfo = timezone(timedelta(hours=timezone_offset))
+        now_tz_jkt = datetime.now(tzinfo)
+        self.today = now_tz_jkt.strftime("%A")
+
         jadwal_json = self.get_matkul_json()
         matkul_list = []
+        list_counter = 0
         for num, matkul in enumerate(jadwal_json['jadwal_mobile']):
             if str(matkul['day']).lower() == self.today.lower():
-                matkul_list.append("{num}. {kode_matkul} - {name} - {hour_begin}-{hour_end}".format(
-                    num = num+1,
+                    list_counter += 1
+                    matkul_list.append("{no}. {kode_matkul} - {name} - {hour_begin}-{hour_end}".format(
+                    no = list_counter,
                     day = self.today,
                     kode_matkul = matkul['kode_matkul'], 
                     name = matkul['name'], 

@@ -14,9 +14,10 @@ from keep_alive import keep_alive
 #INITIALIZE DISCORD BOT
 load_dotenv('.env')
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+CHANNEL_ID = int(os.environ['CHANNEL_ID'])
 client = discord.Client()
 bot = commands.Bot(command_prefix="!")
-CHANNEL_ID = os.getenv("CHANNEL_ID") #BETA Server
+# CHANNEL_ID = str(os.getenv("CHANNEL_ID")) #882920343440871444 #BETA Server
 
 #INITIALIZE THE ACTUAL PROGRAM
 IFBot = ClassAssistantBot()

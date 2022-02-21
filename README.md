@@ -1,7 +1,7 @@
 # ClassAssistantBot
 A Discord bot to help you organize your class schedules
 
-place bot token inside .env
+place bot token and desired channel ID inside .env
 
 Specifically made to work with Kalbis Institute's LEAPS learning portal system, but with a few modifications it should be ready to use for anything else.
 
